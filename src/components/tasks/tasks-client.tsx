@@ -138,11 +138,11 @@ export function TasksClient({ tasks: initialTasks, subjects }: TasksClientProps)
   if (subjects.length === 0) {
     return (
       <EmptyState
-        title="Belum ada mata kuliah"
-        description="Buat mata kuliah terlebih dahulu sebelum menambahkan tugas."
+        title="Belum ada tugas"
+        description="Untuk menambahkan tugas, Anda perlu membuat mata kuliah terlebih dahulu. Setelah itu kembali ke halaman Tasks."
         action={
           <Link href="/subjects">
-            <Button variant="primary">Buat Mata Kuliah</Button>
+            <Button variant="primary">Kelola Mata Kuliah</Button>
           </Link>
         }
       />
