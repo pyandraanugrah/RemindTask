@@ -5,6 +5,9 @@ import { TasksClient } from "@/components/tasks/tasks-client";
 import { ErrorState } from "@/components/error-state";
 import { Subject, Task } from "@prisma/client";
 
+// Always render with fresh data from the database (no static prerender/cache).
+export const dynamic = "force-dynamic";
+
 export default async function TasksPage() {
   let tasks: Task[] = [];
   let subjects: Subject[] = [];

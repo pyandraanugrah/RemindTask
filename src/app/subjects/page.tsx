@@ -4,6 +4,9 @@ import { SubjectsClient } from "@/components/subjects/subjects-client";
 import { ErrorState } from "@/components/error-state";
 import { Subject } from "@prisma/client";
 
+// Always render with fresh data from the database (no static prerender/cache).
+export const dynamic = "force-dynamic";
+
 export default async function SubjectsPage() {
   let subjects: Subject[] = [];
   let hasError = false;

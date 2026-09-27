@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { EmptyState } from "@/components/empty-state";
@@ -20,6 +21,7 @@ interface SubjectsClientProps {
 }
 
 export function SubjectsClient({ subjects }: SubjectsClientProps) {
+  const router = useRouter();
   const [isCreateOpen, setIsCreateOpen] = useState(false);
   const [isEditOpen, setIsEditOpen] = useState(false);
   const [isDeleteConfirmOpen, setIsDeleteConfirmOpen] = useState(false);
@@ -39,6 +41,7 @@ export function SubjectsClient({ subjects }: SubjectsClientProps) {
     if (result.success) {
       setIsCreateOpen(false);
       showFeedback(result.message || "Mata kuliah berhasil ditambahkan", "success");
+      router.refresh();
     } else {
       if (result.errors) {
         setActionErrors(result.errors);
@@ -58,6 +61,7 @@ export function SubjectsClient({ subjects }: SubjectsClientProps) {
     if (result.success) {
       setIsEditOpen(false);
       showFeedback(result.message || "Mata kuliah berhasil diperbarui", "success");
+      router.refresh();
     } else {
       if (result.errors) {
         setActionErrors(result.errors);
@@ -76,6 +80,7 @@ export function SubjectsClient({ subjects }: SubjectsClientProps) {
     if (result.success) {
       setIsDeleteConfirmOpen(false);
       showFeedback(result.message || "Mata kuliah berhasil dihapus", "success");
+      router.refresh();
     } else {
       showFeedback(result.message || "Gagal menghapus mata kuliah", "error");
     }

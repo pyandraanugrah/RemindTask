@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { Plus } from "lucide-react";
 import { Reminder, Subject, Task } from "@prisma/client";
 import { Button } from "@/components/ui/button";
@@ -28,6 +29,7 @@ interface TasksClientProps {
 }
 
 export function TasksClient({ tasks: initialTasks, subjects }: TasksClientProps) {
+  const router = useRouter();
   const [tasks, setTasks] = useState<TaskWithSubject[]>(initialTasks);
   const [filters, setFilters] = useState<TaskFilterOptions>({
     search: "",
@@ -55,6 +57,7 @@ export function TasksClient({ tasks: initialTasks, subjects }: TasksClientProps)
       if (result.data) {
         setTasks([...tasks, result.data]);
       }
+      router.refresh();
     } else {
       if (result.message) {
         showFeedback(result.message, "error");
@@ -73,6 +76,7 @@ export function TasksClient({ tasks: initialTasks, subjects }: TasksClientProps)
         const updatedTask = result.data;
         setTasks(tasks.map((t) => (t.id === selectedTask.id ? updatedTask : t)));
       }
+      router.refresh();
     } else {
       if (result.message) {
         showFeedback(result.message, "error");
@@ -102,6 +106,7 @@ export function TasksClient({ tasks: initialTasks, subjects }: TasksClientProps)
       setIsDeleteConfirmOpen(false);
       showFeedback("Tugas berhasil dihapus", "success");
       setTasks(tasks.filter((t) => t.id !== selectedTask.id));
+      router.refresh();
     } else {
       showFeedback(result.message || "Gagal menghapus tugas", "error");
     }

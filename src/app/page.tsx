@@ -9,6 +9,9 @@ import { CheckSquare, ArrowRight, AlertTriangle } from "lucide-react";
 import { Task, Subject } from "@prisma/client";
 import { getDeadlineState } from "@/lib/deadline";
 
+// Always render with fresh data from the database (no static prerender/cache).
+export const dynamic = "force-dynamic";
+
 type TaskWithSubject = Task & { subject?: Subject | null };
 
 const getGreeting = () => {

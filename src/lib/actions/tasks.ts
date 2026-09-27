@@ -136,6 +136,7 @@ export async function createTask(
     });
 
     revalidatePath("/tasks");
+    revalidatePath("/calendar");
     revalidatePath("/");
     return {
       success: true,
@@ -221,6 +222,7 @@ export async function updateTask(
     });
 
     revalidatePath("/tasks");
+    revalidatePath("/calendar");
     revalidatePath("/");
     return {
       success: true,
@@ -248,6 +250,7 @@ export async function completeTask(id: string): Promise<ActionState> {
     });
 
     revalidatePath("/tasks");
+    revalidatePath("/calendar");
     revalidatePath("/");
     return {
       success: true,
@@ -268,6 +271,7 @@ export async function deleteTask(id: string): Promise<ActionState> {
     await db.task.delete({ where: { id } });
 
     revalidatePath("/tasks");
+    revalidatePath("/calendar");
     revalidatePath("/");
     return {
       success: true,

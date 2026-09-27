@@ -85,6 +85,9 @@ export async function createSubject(
     });
 
     revalidatePath("/subjects");
+    revalidatePath("/tasks");
+    revalidatePath("/calendar");
+    revalidatePath("/");
     return {
       success: true,
       message: "Mata kuliah berhasil ditambahkan",
@@ -147,6 +150,9 @@ export async function updateSubject(
     });
 
     revalidatePath("/subjects");
+    revalidatePath("/tasks");
+    revalidatePath("/calendar");
+    revalidatePath("/");
     return {
       success: true,
       message: "Mata kuliah berhasil diperbarui",
@@ -167,6 +173,9 @@ export async function deleteSubject(id: string): Promise<ActionState> {
     });
 
     revalidatePath("/subjects");
+    revalidatePath("/tasks");
+    revalidatePath("/calendar");
+    revalidatePath("/");
     return {
       success: true,
       message: "Mata kuliah berhasil dihapus",

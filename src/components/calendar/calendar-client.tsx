@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { Task, Subject } from "@prisma/client";
 import { Calendar } from "./calendar";
 import { completeTask } from "@/lib/actions/tasks";
@@ -12,6 +13,7 @@ interface CalendarClientProps {
 }
 
 export function CalendarClient({ tasks: initialTasks }: CalendarClientProps) {
+  const router = useRouter();
   const [tasks, setTasks] = useState<TaskWithSubject[]>(initialTasks);
 
   const handleCompleteTask = async (task: TaskWithSubject) => {
@@ -22,6 +24,7 @@ export function CalendarClient({ tasks: initialTasks }: CalendarClientProps) {
           t.id === task.id ? { ...t, status: "COMPLETED", progress: 100 } : t
         )
       );
+      router.refresh();
     }
   };
 

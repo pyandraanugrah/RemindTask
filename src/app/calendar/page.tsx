@@ -8,6 +8,9 @@ import { Calendar as CalendarIcon } from "lucide-react";
 import Link from "next/link";
 import { Task, Subject } from "@prisma/client";
 
+// Always render with fresh data from the database (no static prerender/cache).
+export const dynamic = "force-dynamic";
+
 type TaskWithSubject = Task & { subject?: Subject | null };
 
 export default async function CalendarPage() {
